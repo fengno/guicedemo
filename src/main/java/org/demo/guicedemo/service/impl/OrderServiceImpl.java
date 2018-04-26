@@ -11,7 +11,7 @@ public class OrderServiceImpl implements OrderService {
 	// Dependencies
 	private final PriceService priceService;
 	private final PaymentService paymentService;
-	private final SeesionManager sessionManager;
+	private final SessionManager sessionManager;
 	
 	// States
 	private Long ordersPaid = 0L;
@@ -19,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
 	@Inject
 	public OrderServiceImpl(PriceService priceService,
 			PaymentService paymentService,
-			SeesionManager sessionManager) {
+			SessionManager sessionManager) {
 		super();
 		this.priceService = priceService;
 		this.paymentService = paymentService;
