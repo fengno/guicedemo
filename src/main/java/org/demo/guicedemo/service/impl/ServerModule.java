@@ -16,7 +16,7 @@ public class ServerModule extends AbstractModule {
 		bind(PaymentService.class).to(PaymentServiceImpl.class);
 	}
 	
-	@Provides Long generateSessionId() {
+	@Provides @SessionId Long generateSessionId() {
 		return System.currentTimeMillis();
 	}
 

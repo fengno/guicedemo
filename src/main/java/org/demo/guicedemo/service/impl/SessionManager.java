@@ -9,7 +9,7 @@ public class SessionManager {
 	private final Provider<Long> sessionIdProvider;
 	
 	@Inject
-	public SessionManager(Provider<Long> sessionIdProvider) {
+	public SessionManager(@SessionId Provider<Long> sessionIdProvider) {
 		super();
 		this.sessionIdProvider = sessionIdProvider;
 	}
