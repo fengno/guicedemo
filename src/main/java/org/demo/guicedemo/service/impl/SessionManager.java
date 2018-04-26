@@ -2,18 +2,20 @@ package org.demo.guicedemo.service.impl;
 
 import javax.inject.Inject;
 
+import com.google.inject.Provider;
+
 public class SessionManager {
 	
-	private final Long sessionId;
+	private final Provider<Long> sessionIdProvider;
 	
 	@Inject
-	public SessionManager(Long sessionId) {
+	public SessionManager(Provider<Long> sessionIdProvider) {
 		super();
-		this.sessionId = sessionId;
+		this.sessionIdProvider = sessionIdProvider;
 	}
 
 	public Long getSessionId() {
-		return sessionId;
+		return sessionIdProvider.get();
 	}
 
 }

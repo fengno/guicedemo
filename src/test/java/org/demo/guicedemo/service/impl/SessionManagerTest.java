@@ -1,6 +1,6 @@
 package org.demo.guicedemo.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ public class SessionManagerTest {
 		Long sessionId = sessionManager.getSessionId();
 		Thread.sleep(1000);
 		Long sessionId2 = sessionManager.getSessionId();
-		assertEquals(sessionId2.longValue(), sessionId.longValue());
+		assertNotEquals(sessionId2.longValue(), sessionId.longValue());
 	}
 
 }
