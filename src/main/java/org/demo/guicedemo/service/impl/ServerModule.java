@@ -6,7 +6,7 @@ import org.demo.guicedemo.service.PriceService;
 
 import com.google.inject.AbstractModule;
 
-public class ServiceModul extends AbstractModule {
+public class ServerModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

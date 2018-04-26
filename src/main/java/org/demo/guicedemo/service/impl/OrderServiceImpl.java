@@ -9,18 +9,18 @@ import org.demo.guicedemo.service.PriceService;
 public class OrderServiceImpl implements OrderService {
 
 	private final PriceService priceService;
-	private final PaymentService paymentService;
+	@Inject private /*final*/ PaymentService paymentService;// 演示成员变量注入
 	private final SeesionManager sessionManager;
 	
 	private Long ordersPaid = 0L;
 	
 	@Inject
 	public OrderServiceImpl(PriceService priceService,
-			PaymentService paymentService,
+//			PaymentService paymentService,
 			SeesionManager sessionManager) {
 		super();
 		this.priceService = priceService;
-		this.paymentService = paymentService;
+//		this.paymentService = paymentService;
 		this.sessionManager = sessionManager;
 	}
 	
