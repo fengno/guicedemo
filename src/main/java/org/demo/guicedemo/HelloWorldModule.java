@@ -3,6 +3,7 @@ package org.demo.guicedemo;
 import java.io.PrintStream;
 
 import org.demo.guicedemo.hellodemo.MyDestination;
+import org.demo.guicedemo.hellodemo.Output;
 import org.demo.guicedemo.hellodemo.PrintStreamWriter;
 import org.demo.guicedemo.hellodemo.StringWritingApplet;
 
@@ -15,6 +16,6 @@ public class HelloWorldModule extends AbstractModule {
 		bind(MyApplet.class).to(StringWritingApplet.class);
 		bind(MyDestination.class).to(PrintStreamWriter.class);
 		bind(PrintStream.class).toInstance(System.out);
-		bind(String.class).toInstance("Hello World");
+		bind(String.class).annotatedWith(Output.class).toInstance("Hello World");
 	}
 }
