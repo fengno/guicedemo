@@ -11,11 +11,13 @@ import org.junit.Test;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Provider;
+import com.google.inject.name.Named;
 
 public class OrderServiceImplTest {
 	@Inject
 	private OrderService orderService;
 	@Inject
+	@Named("supportedCurrencies")
 	private Provider<List<String>> supportedCurrenciesProvider;
 	
 	@Before 
