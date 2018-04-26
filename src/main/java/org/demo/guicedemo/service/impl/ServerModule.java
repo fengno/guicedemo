@@ -1,5 +1,6 @@
 package org.demo.guicedemo.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.demo.guicedemo.service.OrderService;
@@ -8,7 +9,8 @@ import org.demo.guicedemo.service.PriceService;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.name.Named;
+import com.google.inject.TypeLiteral;
+import com.google.inject.name.Names;
 
 public class ServerModule extends AbstractModule {
 
@@ -25,6 +27,9 @@ public class ServerModule extends AbstractModule {
 		bind(Long.class).annotatedWith(SessionId.class).toInstance(System.currentTimeMillis());
 		
 		bind(Long.class).annotatedWith(Names.named("appId")).toInstance(345L);*/
+		
+		// 泛型绑定
+		bind(new TypeLiteral<List<String>>() {}).annotatedWith(Names.named("supportedCurrencies")).toInstance(Arrays.asList("CNY", "EUR", "USD"));
 	}
 	
 	// 命名绑定 自定义注解实现
@@ -32,8 +37,8 @@ public class ServerModule extends AbstractModule {
 		return System.currentTimeMillis();
 	}
 
-	// 命名绑定 字符串实现（关键是返回值类型和名字 即 @Named("") List<String>）
+/*	// 命名绑定 字符串实现（关键是返回值类型和名字 即 @Named("") List<String>）
 	@Provides @Named("supportedCurrencies") List<String> getSupportedCurrencies(PriceService priceService) {
 		return priceService.getSupportedCurrencies();
-	}
+	}*/
 }
