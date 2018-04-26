@@ -7,7 +7,6 @@ import org.demo.guicedemo.hellodemo.PrintStreamWriter;
 import org.demo.guicedemo.hellodemo.StringWritingApplet;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
 
 public class MainModule extends AbstractModule {
 
@@ -16,9 +15,10 @@ public class MainModule extends AbstractModule {
 		bind(MyApplet.class).to(StringWritingApplet.class);
 		bind(MyDestination.class).to(PrintStreamWriter.class);
 		bind(PrintStream.class).toInstance(System.out);
+		bind(String.class).toInstance("Hello World");
 	}
 
-	@Provides private String getString() {
-		return "Hello World";
-	}
+//	@Provides private String getString() {
+//		return "Hello World";
+//	}
 }
