@@ -5,10 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.demo.guicedemo.service.OrderService;
+import org.demo.guicedemo.service.PriceService;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
@@ -16,6 +16,9 @@ import com.google.inject.name.Named;
 public class OrderServiceImplTest {
 	@Inject
 	private OrderService orderService;
+	@Inject 
+	private PriceService priceService;
+	
 	@Inject
 	@Named("supportedCurrencies")
 	private Provider<List<String>> supportedCurrenciesProvider;
@@ -23,7 +26,7 @@ public class OrderServiceImplTest {
 	@Before 
 	public void setUp() {
 		// 没有这一行，orderService会是null
-		Guice.createInjector(new ServerModule(),
+		Guice.createInjector(new ServerModule()/*,
 				new AbstractModule() {
 					
 					@Override
@@ -36,7 +39,7 @@ public class OrderServiceImplTest {
 							}
 						});
 					}
-				}).injectMembers(this);
+				}*/).injectMembers(this);
 	}
 	
 	@Test
@@ -46,6 +49,6 @@ public class OrderServiceImplTest {
 
 	@Test
 	public void testSupportedCurrencies() {
-		throw new RuntimeException(supportedCurrenciesProvider.get().toString());
+		throw new RuntimeException(priceService.getSupportedCurrencies().toString());
 	}
 }

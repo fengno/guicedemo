@@ -16,6 +16,9 @@ public class ServerModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
+		install(new ChinaModule());
+		install(new GlobalModule());
+		
 		// 类名绑定
 		bind(OrderService.class).to(OrderServiceImpl.class);
 		// 实例绑定

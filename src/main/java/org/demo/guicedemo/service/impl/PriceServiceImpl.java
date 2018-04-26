@@ -1,11 +1,19 @@
 package org.demo.guicedemo.service.impl;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
+
+import javax.inject.Inject;
 
 import org.demo.guicedemo.service.PriceService;
 
 public class PriceServiceImpl implements PriceService {
+	private final Set<String> supportedCurrencies;
+	
+	@Inject
+	public PriceServiceImpl(Set<String> supportedCurrencies) {
+		super();
+		this.supportedCurrencies = supportedCurrencies;
+	}
 
 	@Override
 	public long getPrice(long orderId) {
@@ -14,8 +22,8 @@ public class PriceServiceImpl implements PriceService {
 	}
 
 	@Override
-	public List<String> getSupportedCurrencies() {
-		return Arrays.asList("CNY", "USD", "EUR");
+	public Set<String> getSupportedCurrencies() {
+		return supportedCurrencies;
 	}
 
 }

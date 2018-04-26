@@ -1,11 +1,11 @@
 package org.demo.guicedemo.service;
 
-import java.util.List;
+import java.util.Set;
 
 public interface PriceService {
 
 	long getPrice(long orderId);
 
-	List<String> getSupportedCurrencies();
+	Set<String> getSupportedCurrencies();
 
 }
