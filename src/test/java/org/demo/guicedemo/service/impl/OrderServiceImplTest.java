@@ -10,12 +10,13 @@ import org.junit.Test;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
+import com.google.inject.Provider;
 
 public class OrderServiceImplTest {
 	@Inject
 	private OrderService orderService;
 	@Inject
-	private List<String> supportedCurrencies;
+	private Provider<List<String>> supportedCurrenciesProvider;
 	
 	@Before 
 	public void setUp() {
@@ -43,6 +44,6 @@ public class OrderServiceImplTest {
 
 	@Test
 	public void testSupportedCurrencies() {
-		throw new RuntimeException(supportedCurrencies.toString());
+		throw new RuntimeException(supportedCurrenciesProvider.get().toString());
 	}
 }
