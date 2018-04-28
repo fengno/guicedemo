@@ -17,9 +17,11 @@ public class HelloWorldModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		MapBinder.newMapBinder(binder(), String.class, MyApplet.class).addBinding("hello")
+		/*MapBinder.newMapBinder(binder(), String.class, MyApplet.class).addBinding("hello")
 				.to(StringWritingApplet.class);
-		bind(MyApplet.class).annotatedWith(Names.named("hello")).to(StringWritingApplet.class);
+		bind(MyApplet.class).annotatedWith(Names.named("hello")).to(StringWritingApplet.class);*/
+		Applets.register(binder()).named("hello").to(StringWritingApplet.class);
+		
 		bind(MyDestination.class).to(PrintStreamWriter.class);
 		bind(PrintStream.class).toInstance(System.out);
 		// bind(String.class).annotatedWith(Output.class).toInstance("Hello World");
