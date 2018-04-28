@@ -15,7 +15,8 @@ public class App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MyApplet mainapplet = Guice.createInjector(new MainModule()).getInstance(MyApplet.class);
+		MyApplet mainapplet = Guice.createInjector(new MainModule(), new CommandLineModule(args)).getInstance(MyApplet.class);
 		mainapplet.run();
 	}
+	
 }
