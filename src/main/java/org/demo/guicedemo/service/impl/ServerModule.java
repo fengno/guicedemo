@@ -36,7 +36,7 @@ public class ServerModule extends AbstractModule {
 		// 泛型绑定
 		bind(new TypeLiteral<List<String>>() {}).annotatedWith(Names.named("supportedCurrencies")).toInstance(Arrays.asList("CNY", "EUR", "USD"));
 		
-		bind(new TypeLiteral<Cache<String, String>>(){}).to(GuiceDemoCache.class).in(Singleton.class);;
+//		bind(new TypeLiteral<Cache<String, String>>(){}).to(GuiceDemoCache.class);
 	}
 	
 	// 命名绑定 自定义注解实现
@@ -48,4 +48,8 @@ public class ServerModule extends AbstractModule {
 	@Provides @Named("supportedCurrencies") List<String> getSupportedCurrencies(PriceService priceService) {
 		return priceService.getSupportedCurrencies();
 	}*/
+	
+	@Provides @Singleton Cache<String, String> getCache() {
+		return new GuiceDemoCache();
+	}
 }
