@@ -22,9 +22,9 @@ public class CacheTest {
 
 	@Test
 	public void testCache() {
-		paymentService.putCache("testKey", "testValue");
+		paymentService.putCache("testKey", "testValue with in");
 		String cachedValue = priceService.getCachedValue("testKey");
 		// singleton scope下，paymentService下设置的cache内容，在priceService中是可以取到的
-		assertEquals("testValue", cachedValue);
+		assertEquals("testValue with in", cachedValue);
 	}
 }
