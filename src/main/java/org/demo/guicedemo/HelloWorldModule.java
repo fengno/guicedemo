@@ -10,8 +10,6 @@ import org.demo.guicedemo.hellodemo.StringWritingApplet;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.multibindings.MapBinder;
-import com.google.inject.name.Names;
 
 public class HelloWorldModule extends AbstractModule {
 
