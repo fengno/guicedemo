@@ -21,7 +21,7 @@ class PriceServiceMock extends PriceServiceImpl {
 
 	@Inject
 	public PriceServiceMock(Set<String> supportedCurrencies) {
-		super(supportedCurrencies);
+		super(supportedCurrencies, null);
 	}
 
 	@Override
