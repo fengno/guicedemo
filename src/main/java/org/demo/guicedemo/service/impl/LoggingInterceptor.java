@@ -7,11 +7,12 @@ import org.aopalliance.intercept.MethodInvocation;
 
 import com.google.common.base.Joiner;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 public class LoggingInterceptor implements MethodInterceptor {
 	@Inject
 	@SessionId
-	private Long sessionId;
+	private Provider<Long> sessionIdProvider;
 
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -19,7 +20,7 @@ public class LoggingInterceptor implements MethodInterceptor {
 		String className = method.getDeclaringClass().getName();
 		String methodName = method.getName();
 		Object[] args = invocation.getArguments();
-		System.out.println(String.format("In session %d: Calling %s#%s(%s)", sessionId, className, methodName, Joiner.on(",").join(args)));
+		System.out.println(String.format("In session %d: Calling %s#%s(%s)", sessionIdProvider.get(), className, methodName, Joiner.on(",").join(args)));
 		return invocation.proceed();
 	}
 }
