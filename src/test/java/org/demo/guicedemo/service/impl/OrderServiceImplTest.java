@@ -1,5 +1,8 @@
 package org.demo.guicedemo.service.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 import java.util.Set;
 
@@ -56,11 +59,16 @@ public class OrderServiceImplTest {
 
 	@Test
 	public void testSendToPayment() {
-		orderService.sendToPayment(789L);
+		try {
+			orderService.sendToPayment(789L);
+		} catch (RuntimeException e) {
+			assertTrue(e.getMessage().contains("Price=5678"));
+			assertTrue(e.getMessage().contains("ordersPaid=1"));
+		}
 	}
 
 	@Test
 	public void testSupportedCurrencies() {
-		throw new RuntimeException(priceService.getSupportedCurrencies().toString());
+		assertEquals("[CNY, EUR, USD]", priceService.getSupportedCurrencies().toString());
 	}
 }
