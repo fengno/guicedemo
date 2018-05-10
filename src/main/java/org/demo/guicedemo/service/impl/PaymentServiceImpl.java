@@ -14,7 +14,7 @@ public class PaymentServiceImpl implements PaymentService {
 		this.cache = cache;
 	}
 
-	@Override
+	@Override @Logged
 	public void pay(long orderId, long price, Long sessionId) {
 	}
 

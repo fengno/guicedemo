@@ -1,16 +1,22 @@
 package org.demo.guicedemo.service.impl;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 import org.demo.guicedemo.service.OrderService;
 import org.demo.guicedemo.service.PaymentService;
 import org.demo.guicedemo.service.PriceService;
 
+import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.TypeLiteral;
+import com.google.inject.matcher.Matcher;
+import com.google.inject.matcher.Matchers;
 import com.google.inject.name.Names;
 
 public class ServerModule extends AbstractModule {
@@ -36,6 +42,19 @@ public class ServerModule extends AbstractModule {
 		bind(new TypeLiteral<List<String>>() {}).annotatedWith(Names.named("supportedCurrencies")).toInstance(Arrays.asList("CNY", "EUR", "USD"));
 		
 		bind(new TypeLiteral<Cache<String, String>>(){}).to(GuiceDemoCache.class);
+		
+		bindInterceptor(Matchers.any(), Matchers.annotatedWith(Logged.class), new MethodInterceptor() {
+			
+			@Override
+			public Object invoke(MethodInvocation invocation) throws Throwable {
+				Method method = invocation.getMethod();
+				String className = method.getDeclaringClass().getName();
+				String methodName = method.getName();
+				Object[] args = invocation.getArguments();
+				System.out.println(String.format("Calling %s#%s(%s)", className, methodName,Joiner.on(",").join(args)));
+				return invocation.proceed();
+			}
+		});
 	}
 	
 	// 命名绑定 自定义注解实现
