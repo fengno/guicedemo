@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.common.cache.AbstractCache;
+import com.google.inject.Singleton;
 
+@Singleton
 public class GuiceDemoCache extends AbstractCache<String, String> {
 //	private final Map<String, String> keyValues = new HashMap<>();
 //	如果是Singleton范围，考虑线程安全，建议用ConcurrentHashMap
